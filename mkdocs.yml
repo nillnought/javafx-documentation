@@ -1,5 +1,5 @@
-site_name: My Docs
-site_url: https://sitename.example
+site_name: JavaFX Documentation
+site_url: https://nillnought.github.io/javafx-documentation/
 theme:
   name: material
   font:
