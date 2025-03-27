@@ -9,7 +9,8 @@ theme:
     - navigation.footer
     - content.code.copy
   #icon:
-  # logo: putlogo path here
+  # logo: put logo path here
+
   palette:
   # Dark Mode
   - scheme: slate
@@ -27,6 +28,13 @@ theme:
     primary: cyan
     accent: amber
 
+nav:
+    - index.md
+    - Setting_Up.md
+    - Player_Interactions.md
+    - Pizzazz.md
+    - Troubleshooting.md
+    - Glossary.md
 
 #Emojis
 markdown_extensions:
