@@ -30,15 +30,17 @@ theme:
 
 nav:
     - index.md
-    - Setting_Up.md
-    - Player_Interactions.md
-    - Pizzazz.md
+    - Setting Up: Setting_Up.md
+    - Player Interactions: Player_Interactions.md
+    - Pizzazz: Pizzazz.md
     - Troubleshooting.md
     - Glossary.md
 
 #Emojis
 markdown_extensions:
   - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -58,4 +60,6 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+extra_css:
+  - 'stylesheet/custom.css'
 copyright: Copyright &copy; 2025 name
