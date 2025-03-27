@@ -4,7 +4,7 @@
 This section will focus on handling player interactions like inputs for movement and collisions between the player and another entity.
 ## Player Movement
 <!-- Handling key presses and clicks -->
-![Image Title](https://dummyimage.com/600x400/eee/aaa){: .center-image}
+![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
 ## Collisions
 <!-- How to set up collisions and handle them for events -->
 <!-- ## Extra Header if we need it.
