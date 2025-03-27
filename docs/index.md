@@ -18,7 +18,11 @@ To follow this guide you should have:
 - IntelliJ IDEA
 
 ## Overview
+The main topics of this documentation is as listed below:
 
+ - Setting up your JavaFX project
+ - Handling player interaction
+ - Adding pizzazz
 ## Formatting (Typographical Conventions)
 Code blocks will have a title indicating what class the code is placed in.
 <!-- class or file? -->
