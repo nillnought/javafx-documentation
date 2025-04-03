@@ -37,7 +37,7 @@ In order for us to change elements in our FXML file, we need to give the element
 ```
 
 Now we can go to our `MenuController.java` class and add a method to change our text:
-```java title="MenuController.fxml" linenums="1"
+```java title="MenuController.java" linenums="1"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -91,7 +91,7 @@ First let's give our start button an ID:
 </VBox>
 ```
 Now we will change our method so that it uses the button to change the root of our scene to a empty group:
-```java title="MenuController.fxml" linenums="1"
+```java title="MenuController.java" linenums="1"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -122,7 +122,7 @@ Now when we start our application and click the start button we should get an em
 Great! Now let's create a FXML file for our game scene:
 ![Image Title](assets\PlayerInteractionsImages\creategamescene.png"ImageTitle"){: .center-image}
 And let's modify our method to load this scene instead:
-```java title="MenuController.fxml" linenums="1"
+```java title="MenuController.java" linenums="1"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -157,7 +157,7 @@ public class MenuController {
     `fx:controller="com.javafxtutorial.javafxtutorial.Game"`
 
 Lastly, lets add a method for our exit button:
-```java title="MenuController.fxml" linenums="1"
+```java title="MenuController.java" linenums="1"
 package com.javafxtutorial.javafxtutorial;
 
 
