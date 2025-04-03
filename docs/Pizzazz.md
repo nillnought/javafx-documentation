@@ -1,141 +1,126 @@
 # Personalizing and Adding Pizzazz to Your Project
 <!-- overview -->
 ## Overview
-This section will guide you through adding style and visual elements to your JavaFX project, including custom images, fonts, sprites, and animations. By the end, you’ll have a visually polished game with a moving character and optional background movement.
+Welcome to the world of sprite animation in JavaFX! In this guide, we'll transform your basic application into a dynamic, visually engaging experience. You'll learn how to bring your character to life with smooth animations, interactive backgrounds, and professional-level design techniques.
 
-Adding visual flair to your project can make your game more engaging and unique. In this section, we’ll cover:
-- Setting up a **stylesheet** to style your project.
-- Adding custom **images** to your game.
-- Using **sprites** to animate your character and other elements.
+## Understanding Sprite Animations
+Sprite animations are the heart of character movement in 2D games. In our approach, we'll use individual image frames to create fluid, lifelike character movements.
 
-## Setting Up a "Stylesheet" <!--not sure if its called a stylesheet-->
-<!-- show how to setup their style sheet, how to add classes to shapes and stuff so they can make changes to it in the style sheet -->
-![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
+### Sprite Sheet Organization
+Your sprite sheet is carefully organized into four directional folders:
+- `walk_down/`: Frames for downward movement
+- `walk_left/`: Frames for leftward movement
+- `walk_right/`: Frames for rightward movement
+- `walk_up/`: Frames for upward movement
 
-A stylesheet allows you to centralize your visual styles and apply them to your JavaFX elements, just like CSS in web development. Here’s how to set one up:
+Each direction contains 8 sequential PNG files (1.png through 8.png) representing the animation frames.
 
-### Step 1: Create a CSS File
-1. In your project, navigate to the `src/main/resources` folder (or create it if it doesn’t exist).
-2. Inside this folder, create a new file called `styles.css`.
+## Creating Animated Sprites
+Let's break down how we create sprite animations in our `CharacterSprite` class:
 
-### Step 2: Define Styles in the CSS File
-Add styles to your `styles.css` file. For example, to style buttons and text:
-
-    ```css title="styles.css"
-    .button {
-        -fx-background-color: #4CAF50; /* Green background */
-        -fx-text-fill: white; /* White text */
-        -fx-font-size: 16px; /* Font size */
-        -fx-padding: 10px 20px; /* Padding */
-        -fx-border-radius: 5px; /* Rounded corners */
+```java title="CharacterSprite.java"
+private ImageView createAnimatedSprite(Direction direction) {
+    Image[] frames = new Image[8];
+    for (int i = 1; i <= 8; i++) {
+        frames[i-1] = new Image(getClass().getResourceAsStream(
+            direction.path + i + ".png"
+        ));
     }
 
-    .title-text {
-        -fx-font-family: "Arial";
-        -fx-font-weight: bold;
-        -fx-font-size: 24px;
-        -fx-fill: #333333; /* Dark gray text */
-    }
-    ```
-### Step 3: Apply the Stylesheet
-1. In your Main.java file, load the stylesheet into your scene:
+    // Create and play the animation
+    Timeline animation = createAnimation(spriteView, frames);
+    animation.play();
 
-    ```java title="Main.java"
-    Scene scene = new Scene(layout, 400, 300);
-    scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-    ```
+    return spriteView;
+}
+```
+!!! tip
+    The Direction enum allows easy management of different movement directions, making your code more organized and readable.
 
-2. Assign style classes to your elements in Java:
-
-    ```java title="Main.java"
-    title.getStyleClass().add("title-text");
-    startButton.getStyleClass().add("button");
-    exitButton.getStyleClass().add("button");
-    ```
-
-!!! success
-Now your buttons and title text will use the styles defined in your `styles.css` file. You can easily update the look of your game by editing this file.
-
-## Adding Images
+## Adding Background Movement
 <!-- how to add images, set backgrounds, maybe make a moving background(? not sure if we want to do that or not [moving bgs might go into the sprites section since its pretty similar]) -->
+Let's break down how we create sprite animations in our `CharacterSprite` class:
 
-### Step 1: Import an Image
-1. Place your image file (e.g., `background.png`) in the `src/main/resource`s folder.
-2. Load the image in your `Main.java` file using the Image and ImageView classes:
-
-    ```java title="Main.java"
-    Image backgroundImage = new Image(getClass().getResource("/background.png").toExternalForm());
+```java title="CharacterSprite.java"
+private ImageView createMovingBackground() {
+    Image backgroundImage = new Image(getClass().getResourceAsStream("/assets/background.png"));
     ImageView backgroundView = new ImageView(backgroundImage);
-    backgroundView.setFitWidth(400); // Match the scene width
-    backgroundView.setFitHeight(300); // Match the scene height
-    ```
+    
+    // Scale background to scene dimensions
+    backgroundView.setFitWidth(SCENE_WIDTH);
+    backgroundView.setFitHeight(SCENE_HEIGHT);
 
-### Step 2: Add the Image to the Layout
-1. Use a StackPane to layer the background image behind other elements:
+    // Create a moving background animation
+    Timeline backgroundAnimation = createBackgroundAnimation(backgroundView);
+    backgroundAnimation.play();
 
-    ```java title="Main.java"
-    StackPane stackPane = new StackPane();
-    stackPane.getChildren().addAll(backgroundView, layout); // Add background first, then layout
-    Scene scene = new Scene(stackPane, 400, 300);
-    ```
+    return backgroundView;
+}
+```
 
-!!! note
-This approach ensures that your background image stays behind all other elements.
+## Adding Background Movement
+<!-- how to add images, set backgrounds, maybe make a moving background(? not sure if we want to do that or not [moving bgs might go into the sprites section since its pretty similar]) -->
+Background animations can add depth and immersion to your game. Our `createMovingBackground()` method demonstrates a simple scrolling technique:
 
-## Using Sprites
-<!-- how to do sprites and animate them, plus maybe moving backgrounds -->
-Sprites are images or objects that can be animated. Here’s how to add and animate a sprite:
+```java title="CharacterSprite.java"
+private ImageView createAnimatedSprite(Direction direction) {
+    Image[] frames = new Image[8];
+    for (int i = 1; i <= 8; i++) {
+        frames[i-1] = new Image(getClass().getResourceAsStream(
+            direction.path + i + ".png"
+        ));
+    }
 
-### Step 1: Create a Sprite
-1. Add a sprite image (e.g., `character.png`) to the `src/main/resources` folder.
-2. Load the sprite like you did with the background image:
+    // Create and play the animation
+    Timeline animation = createAnimation(spriteView, frames);
+    animation.play();
 
-    ```java title="Main.java"
-    Image characterImage = new Image(getClass().getResource("/character.png").toExternalForm());
-    ImageView characterSprite = new ImageView(characterImage);
-    characterSprite.setFitWidth(50); // Set sprite width
-    characterSprite.setFitHeight(50); // Set sprite height
-    ```
+    return spriteView;
+}
+```
 
-### Step 2: Animate the Sprite
-1. Use a `TranslateTransition` to move the sprite:
+## Keyboard Interactions
+Make your game interactive with keyboard-based movement:
 
-    ```java title="Main.java"
-    TranslateTransition moveSprite = new TranslateTransition(Duration.seconds(2), characterSprite);
-    moveSprite.setByX(200); // Move 200 pixels to the right
-    moveSprite.setCycleCount(Animation.INDEFINITE); // Loop animation
-    moveSprite.setAutoReverse(true); // Reverse direction
-    moveSprite.play();
-    ```
+```java title="CharacterSprite.java"
+private void addKeyboardMovement(Scene scene, ImageView characterSprite, ImageView backgroundView) {
+    scene.setOnKeyPressed(event -> {
+        switch (event.getCode()) {
+            case UP:
+                characterSprite.setTranslateY(characterSprite.getTranslateY() - 10);
+                backgroundView.setTranslateY(backgroundView.getTranslateY() + 10);
+                break;
+            // Similar cases for DOWN, LEFT, RIGHT
+        }
+    });
+}
+```
 
-2. Add the sprite to your layout: 
-
-    ```java title="Main.java"
-    stackPane.getChildren().add(characterSprite);
-    ```
-
-### Step 3: Optional - Moving Background
-If you want the background to move when the player moves:
-
-1. Use a `TranslateTransition` on the `backgroundView` object.
-2. Link the background movement to player input (e.g., arrow keys) using event handlers.
+## Best Practices and Performance Tips
+- Use Timeline for smooth, controlled animations
+- Preload images to prevent runtime lag
+- Keep your sprite frames consistent in size and style
+- Use enums for better code organization
 
 !!! warning
-Moving both the background and sprite can cause performance issues if not optimized. Test thoroughly!
+    Be mindful of memory usage when loading multiple sprite frames. Consider image caching or lazy loading for larger sprite sheets.
+
+## Advanced Customization
+Experiment with these techniques to enhance your sprite animation:
+
+- Add frame rate controls
+- Implement diagonal movement
+- Create transition animations between different movement states
 
 ## Conclusion
 <!-- end product is our final game with a moving character sprite and (maybe) a background that moves when the player moves-->
 
-By following these steps, you’ve personalized your JavaFX project with styles, images, and animations. The final product includes:
+Congratulations! You've learned how to create dynamic, animated sprites in JavaFX. Your character now comes to life with smooth, directional movements and an interactive background.
 
-- A stylesheet for customizing your game’s appearance.
-- A background image to enhance visuals.
-- An animated sprite that can move across the screen.
+**Key achievements:**
 
-Below is an example of the final result:
+- Implemented multi-directional sprite animations
+- Created a scrolling background
+- Added keyboard-based character movement
 
-- A title screen with styled buttons and text.
-- A moving character sprite.
-- Optional moving background when the player moves.
-
-With these elements in place, your game is now visually polished and ready for additional gameplay mechanics!
+Keep exploring, have fun, and remember - great game design is all about bringing your imagination to life! 🎮🚀
