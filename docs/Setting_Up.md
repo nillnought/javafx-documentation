@@ -1,79 +1,64 @@
 # Setting Up Your JavaFX Project
 <!-- overview -->
 ## Overview
-This section will guide you through setting up a JavaFX project in IntelliJ IDEA. By the end of this tutorial, you'll have a basic JavaFX project ready to build on.
+Welcome to your JavaFX adventure! If you're new to desktop application development or just getting started with JavaFX, don't worry - we've got you covered. This comprehensive guide will walk you through every step of creating your first JavaFX project, from setting up your development environment to creating your first interactive scene.
 
-## Step 1: Install JavaFX SDK (Optional)
-<!-- Installing the SDK -->
-![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
+## Getting Started: Preparing Your Development Environment
 
-1. Visit the official [JavaFX website](https://openjfx.io/).
-2. Download the appropriate JavaFX SDK for your operating system.
-   - For Windows: Download the `.zip` file.
-   - For macOS: Download the `.dmg` file.
-3. Extract the downloaded file to a location on your machine (e.g., `C:\javafx-sdk`).  
-   This step is optional as Maven will handle dependencies, but it’s helpful for development or debugging purposes.
+### Enabling the JavaFX Plugin
+Let's kick things off by making sure you have the JavaFX plugin installed and ready to go:
 
-## Step 2: Create a New Maven Project
+1. Open IntelliJ IDEA and navigate to the Plugins section
+   - Go to File > Settings (on Windows/Linux) or IntelliJ IDEA > Preferences (on macOS)
+   - Click on the "Plugins" tab on the left side of the window
+
+2. In the search bar, type "JavaFX"
+   - Look for the official JavaFX plugin
+   - If it's not installed, click "Install" 
+   - If it's already installed, make sure it's enabled by checking the box next to the plugin
+
+!!! tip
+    The JavaFX plugin provides additional support and tools that make developing JavaFX applications much smoother. It includes helpful code completion, scene builder integration, and other useful features.
+
+### Creating Your First JavaFX Project
 <!-- creating the project in intelliJ -->
 ![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
 
-1. Open IntelliJ IDEA.
-2. Click on **New Project**.
-3. Select **Maven** from the left-hand menu.
-4. Check **Create from archetype** and select `maven-archetype-quickstart`. Click **Next**.
-5. Configure your project:
-   - **GroupId**: Enter your package name (e.g., `com.example`).
-   - **ArtifactId**: Enter your project name (e.g., `javafx-maven-app`).
-   - **Version**: Leave as default unless specific instructions are given.
-6. Click **Finish** to create your Maven project.
+Now that the plugin is ready, let's create your project:
 
-## Step 3: Add JavaFX Dependencies to `pom.xml`
-<!-- adding dependencies to pom.xml  -->
-![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
+1. Click on "New Project" from the IntelliJ IDEA welcome screen
+   - Alternatively, you can go to File > New > Project
 
-1. Open the `pom.xml` file in the root of your project.
-2. Add the following `<dependencies>` section to include JavaFX:
+2. On the left side, select "JavaFX" from the project types
+   - If you don't see JavaFX immediately, make sure you've installed the plugin correctly
 
-   ```xml
-   <dependencies>
-       <!-- JavaFX dependencies -->
-       <dependency>
-           <groupId>org.openjfx</groupId>
-           <artifactId>javafx-controls</artifactId>
-           <version>19</version> <!-- Replace with the current JavaFX version -->
-       </dependency>
-       <dependency>
-           <groupId>org.openjfx</groupId>
-           <artifactId>javafx-fxml</artifactId>
-           <version>19</version> <!-- Replace with the current JavaFX version -->
-       </dependency>
-   </dependencies>
-   ```
+3. Project Configuration:
+   - Choose a meaningful name for your project (e.g., "JavaFXTutorial")
+   - Select a location to save your project
+   - (Optional but recommended) Check the "Create Git repository" box if you want version control
+
+4. Click "Next" and then "Finish"
 
 !!! note
-Replace 19 with the version of JavaFX you are using. You can find the latest version on the [Maven Repository](https://mvnrepository.com/artifact/org.openjfx).
+    When your project first loads, you'll see some default files like "HelloApplication.java" and "HelloController.java". These are generated examples that can be helpful for reference, but for our tutorial, we'll be creating our own files from scratch.
 
-3. Add the JavaFX Maven plugin to your pom.xml under the <build> section:
+## Exploring Your Project Structure
+<!-- exploring project structure  -->
+![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
 
-    ```xml
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.13</version> <!-- Replace with the current plugin version -->
-                <configuration>
-                    <mainClass>com.example.Main</mainClass> <!-- Replace with your main class -->
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    ```
-!!! warning
-Ensure that the mainClass field matches the fully qualified name of your Main class (e.g., com.example.Main).
+Let's take a moment to understand the project layout:
 
-## Step 4: Create the Main JavaFX Application
+1. Navigate to the `src` folder
+   - This is the root of your source code
+
+2. Expand the `java` folder
+   - This is where all your Java classes will live
+
+3. Look for the folder starting with "com."
+   - This is your primary package folder
+   - In JavaFX projects, this typically follows the format `com.yourcompanyname.projectname`
+
+## Creating Your Main Application Class
 <!-- creating main application -->
 ![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
 
@@ -81,131 +66,165 @@ Ensure that the mainClass field matches the fully qualified name of your Main cl
 2. Create a new Java class (e.g., `Main.java`) in your package (e.g., `com.example`).
 3. Paste the following code into your class:
 
-    ```java
-    package com.example;
+    ```java title="Main.java" linenums="1"
+    package com.javafxtutorial.javafxtutorial;
 
     import javafx.application.Application;
-    import javafx.scene.Scene;
-    import javafx.scene.control.Label;
     import javafx.stage.Stage;
 
-    public class Main extends Application {
+    public class MainMenu extends Application {
+        // This is where the magic begins!
         @Override
-        public void start(Stage primaryStage) {
-            Label label = new Label("Hello, JavaFX with Maven!");
-            Scene scene = new Scene(label, 400, 300);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("JavaFX Maven App");
-            primaryStage.show();
+        public void start(Stage stage) throws Exception {
+            // We'll add our scene setup here in just a moment
+        }
+
+        // The entry point of our application
+        public static void main(String[] args) {
+            // This method launches our JavaFX application
+            launch(args);
+        }
+    }
+    ```
+#### Understanding the Application Structure
+- `Application` is the base class for JavaFX applications
+- `start()` method is called when the application launches
+- `main()` method is the entry point that calls `launch()`
+
+## Building Your First Scene
+<!-- building your first scene -->
+Scenes in JavaFX are like canvases where you'll draw your user interface. Let's create a basic scene:
+
+   ```java title="MainMenu.java" linenums="1"
+    package com.javafxtutorial.javafxtutorial;
+
+    import javafx.application.Application;
+    import javafx.scene.Group;
+    import javafx.scene.Scene;
+    import javafx.stage.Stage;
+
+    public class MainMenu extends Application {
+        // Define our window dimensions
+        private static final int WIDTH = 600;
+        private static final int HEIGHT = 500;
+
+        @Override
+        public void start(final Stage stage) throws Exception {
+            // Create a root group to hold our UI elements
+            Group root = new Group();
+            
+            // Create our scene with the root group
+            Scene scene = new Scene(root, WIDTH, HEIGHT);
+            
+            // Configure the stage (window)
+            stage.setScene(scene);
+            stage.setTitle("My First JavaFX Application");
+            
+            // Show the window
+            stage.show();
         }
 
         public static void main(String[] args) {
             launch(args);
         }
     }
-    ```
-
-## Step 5: Run the Maven Project
-<!-- running maven project -->
-![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
-
-1. Open the **Terminal** in IntelliJ IDEA.
-2. Use the following Maven command to compile and run your application:
-
-    ```plaintext
-    mvn javafx:run
-    ```
-!!! success
-If everything is set up correctly, a window will appear with the text "Hello, JavaFX with Maven!".
-
-## Step 6: Add Elements to the Scene
-<!-- how to add shapes and buttons to a scene, end goal is a title screen. -->
-1. Open your `Main.java` file.
-2. Use a `VBox` (Vertical Box) layout to organize your elements.
-3. Add a title, "Start" button, and "Exit" button to the layout. Use the following code:
-
-   ```java title="Main.java" linenums="1"
-   @Override
-   public void start(Stage primaryStage) {
-       // Create a VBox layout
-       VBox layout = new VBox(20); // 20px spacing between elements
-       layout.setAlignment(Pos.CENTER); // Center elements
-
-       // Add a title
-       Text title = new Text("Welcome to My Game!");
-       title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-
-       // Add buttons
-       Button startButton = new Button("Start");
-       Button exitButton = new Button("Exit");
-
-       // Add button functionality
-       startButton.setOnAction(e -> System.out.println("Game Started!")); // Placeholder for starting the game
-       exitButton.setOnAction(e -> primaryStage.close()); // Close the application
-
-       // Add elements to the layout
-       layout.getChildren().addAll(title, startButton, exitButton);
-
-       // Create the scene
-       Scene scene = new Scene(layout, 400, 300);
-       primaryStage.setScene(scene);
-       primaryStage.setTitle("Title Screen");
-       primaryStage.show();
-   }
    ```
-4. Run your application. You should see a title screen with the title "Welcome to My Game!" centered at the top, followed by the "Start" and "Exit" buttons.
 
-!!! success
-Clicking the Start button will print "Game Started!" to the console, and clicking the Exit button will close the application.
+## Adding Interactive Elements
+<!-- Adding Interactive Elements -->
+Let's make our scene more interesting by adding some UI components:
 
-## Conclusion
-<!-- end product is a simple title screen with a start button, exit button and title. -->
-You’ve now created a simple title screen with a title, "Start" button, and "Exit" button. Below is the complete code for your Main class:
-
-    ```java title="Main.java" linenums="1"
+   ```java title="MainMenu.java" linenums="1"
     import javafx.application.Application;
-    import javafx.geometry.Pos;
+    import javafx.scene.Group;
     import javafx.scene.Scene;
     import javafx.scene.control.Button;
     import javafx.scene.layout.VBox;
-    import javafx.scene.text.Font;
-    import javafx.scene.text.FontWeight;
     import javafx.scene.text.Text;
     import javafx.stage.Stage;
 
-    public class Main extends Application {
+    public class MainMenu extends Application {
+        private static final int WIDTH = 600;
+        private static final int HEIGHT = 500;
+
         @Override
-        public void start(Stage primaryStage) {
-            // Create a VBox layout
-            VBox layout = new VBox(20);
-            layout.setAlignment(Pos.CENTER);
+        public void start(final Stage stage) throws Exception {
+            // Create our scene using a method to set up elements
+            Scene scene = new Scene(makeSceneGroup(), WIDTH, HEIGHT);
+            stage.setScene(scene);
+            stage.setTitle("JavaFX Tutorial");
+            stage.show();
+        }
 
-            // Add a title
-            Text title = new Text("Welcome to My Game!");
-            title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-
-            // Add buttons
+        // Method to create and organize our scene elements
+        private Group makeSceneGroup() {
+            Group sceneGroup = new Group();
+            
+            // Create a title text
+            Text text = new Text("Welcome to JavaFX!");
+            
+            // Create buttons
             Button startButton = new Button("Start");
             Button exitButton = new Button("Exit");
-
-            // Add button functionality
-            startButton.setOnAction(e -> System.out.println("Game Started!"));
-            exitButton.setOnAction(e -> primaryStage.close());
-
-            // Add elements to the layout
-            layout.getChildren().addAll(title, startButton, exitButton);
-
-            // Create the scene
-            Scene scene = new Scene(layout, 400, 300);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Title Screen");
-            primaryStage.show();
+            
+            // Use VBox to arrange elements vertically
+            VBox vbox = new VBox(20); // 20 pixels spacing between elements
+            vbox.getChildren().addAll(text, startButton, exitButton);
+            
+            // Add the VBox to our scene group
+            sceneGroup.getChildren().add(vbox);
+            
+            return sceneGroup;
         }
 
         public static void main(String[] args) {
             launch(args);
         }
     }
-    ```
+   ```
 
-    With this, your title screen is ready. In the next steps, you can expand it further by adding more features or transitioning to other scenes when the "Start" button is pressed.
+## Introduction to FXML: Separating Design from Logic
+<!-- Adding Interactive Elements -->
+FXML allows you to design your user interface separately from your Java code:
+
+### Creating an FXML File
+Create a new file called `MainMenu.fxml` in your resources folder:
+
+   ```xml title="MainMenu.xml"
+   <?xml version="1.0" encoding="UTF-8"?>
+    <?import javafx.scene.layout.VBox?>
+    <?import javafx.scene.text.Text?>
+    <?import javafx.scene.control.Button?>
+    <VBox xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.javafxtutorial.javafxtutorial.MenuController">
+        <Text>JavaFX Tutorial</Text>
+        <Button text="Start"/>
+        <Button text="Exit"/>
+    </VBox>
+   ```
+
+### Loading FXML in Your Application
+Create a new file called `MainMenu.fxml` in your resources folder:
+
+   ```java title="MainMenu.java"
+    @Override
+    public void start(final Stage stage) throws Exception {
+        FXMLLoader menuFXML = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        Scene scene = new Scene(menuFXML.load(), WIDTH, HEIGHT);
+        stage.setScene(scene);
+        stage.setTitle("JavaFX Tutorial");
+        stage.show();
+    }
+   ```
+
+## Conclusion
+<!-- end product is a simple title screen with a start button, exit button and title. -->
+Congratulations! You've just taken your first steps into the world of JavaFX application development. We've covered:
+
+- Setting up a JavaFX project in IntelliJ IDEA
+- Creating a basic application structure
+- Building scenes with interactive elements
+- Introducing FXML for UI design
+- Remember, every great application starts with a simple first step. You've just taken that step! 🚀
+
+Keep experimenting, have fun, and don't be afraid to try new things. Happy coding!
