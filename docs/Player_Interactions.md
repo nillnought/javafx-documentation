@@ -367,6 +367,10 @@ public class MenuController {
 }
 
 ```
+
+## Mouse Interactions
+The last type of player interaction we will handle is mouse interactions. For this we will use the orange rectangle we added to our scene previously.
+
 ## Conclusion
 Well Done! You've learned how to handle different types of player interactions. We covered:
 
