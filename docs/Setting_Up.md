@@ -97,6 +97,7 @@ Let's take a moment to understand the project layout:
     }
 ```
 When we extend application we must provide an implementation of its start method.
+
 5. Override the start method:
 
 ```java title="MainMenu.java" linenums="1"
@@ -191,8 +192,10 @@ public class MainMenu extends Application {
 <!-- Adding Interactive Elements -->
 Now that we have our scene set up let's start adding elements to it.
 There's two ways we can add elements to our scene:
+
 1. Manually inserting elements
 2. By using FXML files
+
 To start we will add elements manually, then go over how we can translate the elements we added into a single FXML file.
 
 ### Manually Inserting Elements
@@ -239,8 +242,8 @@ Rectangle rectangle = new Rectangle(80, 80);
 ```
 !!! note
     When we create a rectangle, we need to pass the width and height to its constructor.
-
-We can also assign our rectangle a colour by passing `Color.RED`, where `RED` can be replaced with the colour we want.
+!!! note 
+    We can also assign our rectangle a colour by passing `Color.RED`, where `RED` can be replaced with the colour we want.
 Let's add our rectangle to our group and return the group to finish our method.
 ``` java title="makeSceneGroup method" linenums="27"
 private Group makeSceneGroup() {
@@ -309,9 +312,13 @@ FXML allows you to design your user interface separately from your Java code. Le
 For a more detailed look into FXML check out the [Oracle Documentation](https://openjfx.io/javadoc/24/javafx.fxml/javafx/fxml/doc-files/introduction_to_fxml.html) on it.
 
 ### Creating an FXML File
-Create a new file called `MainMenu.fxml` in your resources folder:
+Start by creating a new file called `MainMenu.fxml` in your resources folder:
 ![Image Title](assets\SettingUpImages\fxmlfilelocation.png"ImageTitle"){: .center-image}
 
+![Image Title](assets\SettingUpImages\newfxmlfile.png"ImageTitle"){: .center-image}
+When you create your FXML file it will look like this:
+![Image Title](assets\SettingUpImages\initialfxmlfile.png"ImageTitle"){: .center-image}
+From here, we can remove the `AnchorPane` tag and all the initial import statements as we won't be needing them.
 To recreate our scene in our FXML file, insert this code:
 ```xml title="MainMenu.xml" linenums="1"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -327,7 +334,9 @@ To recreate our scene in our FXML file, insert this code:
 </VBox>
 
 ```
-
+Let's walk through this step by step.
+First we create a VBox, using the VBox tag.
+Inside our VBoc we add our text element and our two buttons, putting what we want the text and buttons to display in between their opening and closing tags.
 ### Loading FXML in Your Application
 Now to use our FXML file we need to load it in our start method.
 
@@ -341,6 +350,8 @@ Now to use our FXML file we need to load it in our start method.
         stage.show();
     }
    ```
+!!! note 
+    Make sure that in our scene constructor we call our FXML loader we created with .load() attached!! Or else it will not accept it and will fail to construct our scene.
 
 !!! success
     The final result should look like this:
