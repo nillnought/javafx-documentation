@@ -5,7 +5,7 @@ This section will focus on handling player interactions like inputs for movement
 ## Player Movement
 <!-- Handling key presses and clicks -->
 Create a new class in our `com.` folder called "MenuController"
-![Image Title](assets\PlayerInteractionImages\newFile.png"ImageTitle"){: .center-image}
+![Image Title](assets\PlayerInteractionsImages\newFile.png"ImageTitle"){: .center-image}
 Now, we need to tell our FXML file to use our controller.
 ```xml title="mainMenu.fxml" linenums="1"
     <?xml version="1.0" encoding="UTF-8"?>
@@ -211,7 +211,7 @@ Make sure to tell our exit button to use the method as well:
 ## Player Movement
 <!-- How to set up collisions and handle them for events -->
 Create a class called Game.
-![Image Title](https://dummyimage.com/600x400/eee/aaa"ImageTitle"){: .center-image}
+![Image Title](assets\PlayerInteractionsImages\game.png"ImageTitle"){: .center-image}
 This is where we will handle our interaction and game logic.
 Before we start with player movement, let's set up our `game.fxml` scene.
 ```xml title="game.fxml" linenums="1"
@@ -368,4 +368,10 @@ public class MenuController {
 
 ```
 ## Conclusion
-<!-- End product is a player that can move using WASD or arrow keys and can click to do an action (maybe send out a bullet type object) which can collide with an enemy to delete the enemy.-->
+Well Done! You've learned how to handle different types of player interactions. We covered:
+
+- Adding functionality to buttons
+- Changing scenes
+- Handling keyboard input
+
+Now it's time to move on to the last step, making this game your own!
