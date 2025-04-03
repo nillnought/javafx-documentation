@@ -236,7 +236,7 @@ Create a new file called `MainMenu.fxml` in your resources folder:
 ![Image Title](assets\SettingUpImages\fxmlfilelocation.png"ImageTitle"){: .center-image}
 
 To recreate our scene in our FXML file, insert this code:
-```xml title="MainMenu.xml"
+```xml title="MainMenu.xml" linenums="1"
 <?xml version="1.0" encoding="UTF-8"?>
 
 
@@ -254,7 +254,7 @@ To recreate our scene in our FXML file, insert this code:
 ### Loading FXML in Your Application
 Now to use our FXML file we need to load it in our start method.
 
-   ```java title="MainMenu.java"
+   ```java title="MainMenu.java" linenums="1"
     @Override
     public void start(final Stage stage) throws Exception {
         FXMLLoader menuFXML = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
