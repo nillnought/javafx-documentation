@@ -4,9 +4,10 @@
 This section will focus on handling player interactions like inputs for movement and collisions between the player and another entity.
 ## Player Movement
 <!-- Handling key presses and clicks -->
-Create a new class in our `com.` folder called "MenuController"
+1. Create a new class in our `com.` folder called "MenuController"
+
 ![Image Title](assets\PlayerInteractionsImages\newFile.png"ImageTitle"){: .center-image}
-Now, we need to tell our FXML file to use our controller.
+2. Set the FXML file controller to `MenuContoller`
 ```xml title="mainMenu.fxml" linenums="1" hl_lines="7"
     <?xml version="1.0" encoding="UTF-8"?>
 
@@ -20,6 +21,8 @@ Now, we need to tell our FXML file to use our controller.
    <Button>Exit</Button>
 </VBox>
 ```
+3. Assign ID to text element
+
 In order for us to change elements in our FXML file, we need to give the element an ID. We will be changing our text element, so let's give it an ID.
 ```xml title="mainMenu.fxml" linenums="1" hl_lines="8"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -35,6 +38,7 @@ In order for us to change elements in our FXML file, we need to give the element
 </VBox>
 
 ```
+4. Create method to change text contents
 
 Now we can go to our `MenuController.java` class and add a method to change our text:
 ```java title="MenuController.java" linenums="1" hl_lines="4-5 9-16"
@@ -59,6 +63,7 @@ public class MenuController {
 ```
 !!! warning
     The @FXML tag is required for any method that modifies an element in our FXML file.
+5. Assign `onAction` for start button
 
 Lastly, let's go back to our FXML file and tell our start button to use this method when we click it:
 ```xml title="mainMenu.fxml" linenums="1" hl_lines="9"
@@ -291,9 +296,9 @@ public class Game {
 }
 ```
 Our two methods `setVelX` and `setVelY` are where we set the player's X and Y velocity, while our `movementLoop` method handles translating the player using that velocity.
-3. Get keyboard inputs
+3. Starting our movement loop
 
-Lastly, we need to get the player's inputs so that we know when to move them. To do this let's make some changes to our `MenuController` class.
+Before we can handle any keyboard inputs we need to start our `movementLoop`. To do this let's make some changes to our `MenuController` class.
 
 ```java title="MenuController.java" linenums="1" hl_lines="17 21-37"
 package com.javafxtutorial.javafxtutorial;
@@ -344,7 +349,100 @@ public class MenuController {
 To start, we've broken up our single line we used to change our Scene root into 4 lines.
 Doing this allows us to use our `game.fxml` file separately, which we can use to access our `Game` class using this line: `Game gameController = gameFXML.getController();`
 This allows us to start our `movementLoop` method we defined earlier.
+Lastly, we request focus for our game window so that any keyboard inputs will be correctly recieved by our game.
 
+4. Handling keyboard inputs
+
+Now that we've started our movement loop, we need to recieve keyboard input from the player so that we know when to change their position.
+To do this we will use `setOnKeyPressed` and `setOnKeyReleased` to ensure smooth movement.
+``` java title="mainController.java" linenums="1" hl_lines="9"
+    package com.javafxtutorial.javafxtutorial;
+
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+
+
+import java.io.IOException;
+
+
+public class MenuController {
+
+
+   @FXML
+   private Button startButton;
+
+
+   private static final int SPEED = 5;
+
+
+   @FXML
+   protected void onStartButtonClick() throws IOException {
+       FXMLLoader gameFXML = new FXMLLoader(getClass().getResource("game.fxml"));
+
+
+       Group gameRoot = gameFXML.load();
+
+
+       Scene currentScene = startButton.getScene();
+
+
+       currentScene.setRoot(gameRoot);
+
+
+       Game gameController = gameFXML.getController();
+       gameController.movementLoop();
+
+
+       gameRoot.setOnKeyPressed(event -> {
+           if (event.getCode() == KeyCode.W) {
+               gameController.setVelY(-SPEED);
+           }
+           if (event.getCode() == KeyCode.S) {
+               gameController.setVelY(SPEED);
+           }
+           if (event.getCode() == KeyCode.A) {
+               gameController.setVelX(-SPEED);
+           }
+           if (event.getCode() == KeyCode.D) {
+               gameController.setVelX(SPEED);
+           }
+       });
+       gameRoot.setOnKeyReleased(event -> {
+           if (event.getCode() == KeyCode.W) {
+               gameController.setVelY(0);
+           }
+           if (event.getCode() == KeyCode.S) {
+               gameController.setVelY(0);
+           }
+           if (event.getCode() == KeyCode.A) {
+               gameController.setVelX(0);
+           }
+           if (event.getCode() == KeyCode.D) {
+               gameController.setVelX(0);
+           }
+       });
+
+
+       gameRoot.requestFocus();
+   }
+
+
+   private FXMLLoader gameScreen() {
+//        Group root = new Group();
+//        return root;
+       return new FXMLLoader(getClass().getResource("game.fxml"));
+   }
+   @FXML
+   protected void onExitButtonClick() {
+       System.exit(0);
+   }
+}
+```
 ## Mouse Interactions
 The last type of player interaction we will handle is mouse interactions. For this we will use the orange rectangle we added to our scene previously.
 

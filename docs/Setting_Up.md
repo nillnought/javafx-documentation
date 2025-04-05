@@ -9,10 +9,13 @@ Welcome to your JavaFX adventure! If you're new to desktop application developme
 Let's kick things off by making sure you have the JavaFX plugin installed and ready to go:
 
 1. Open IntelliJ IDEA and navigate to the Plugins section
+
    - Click on the "Plugins" tab on the left side of the window
+
 ![Plugins Tab](assets\SettingUpImages\pluginsfull.png"ImageTitle"){: .center-image}
 
 2. In the search bar, type "JavaFX"
+
    - Look for the official JavaFX plugin
    - If it's not installed, click "Install" 
    - If it's already installed, make sure it's enabled by checking the box next to the plugin
@@ -27,18 +30,20 @@ Let's kick things off by making sure you have the JavaFX plugin installed and re
 Now that the plugin is ready, let's create your project:
 
 1. Navigate back to the projects screen
+
 ![Image Title](assets\SettingUpImages\projectsfull.png"ImageTitle"){: .center-image}
 
 2. Click on "New Project" from the IntelliJ IDEA welcome screen
+
 ![Image Title](assets\SettingUpImages\new project.png"ImageTitle"){: .center-image}
 
 
 3. On the left side, select "JavaFX" from the project types
-!!! note
-    If you don't see JavaFX immediately, make sure you've installed the plugin correctly
+
 ![Image Title](assets\SettingUpImages\newprojectjavaFX.png"ImageTitle"){: .center-image}
 
 4. Project Configuration:
+
     - Choose a meaningful name for your project (e.g., "JavaFXTutorial")
     - Select a location to save your project
     - (Optional but recommended) Check the "Create Git repository" box if you want version control
@@ -49,7 +54,9 @@ Once you're finished, click "Next"
 5. Additional Libraries
 
 You will be prompted to select additional libraries once you press next. For this guide we will not be using any additional libraries, so you may ignore this prompt and move ahead to creating your project.
+
 ![Image Title](assets\SettingUpImages\libraries.png"ImageTitle"){: .center-image}
+
 6. Create your project
 
 
@@ -82,7 +89,7 @@ Let's take a moment to understand the project layout:
 ![Image Title](assets\SettingUpImages\namefile.png"ImageTitle"){: .center-image}
 4. Make your class extend Application:
 
-```java title="MainMenu.java" linenums="1"
+```java title="MainMenu.java" linenums="1" hl_lines="9"
     package com.javafxtutorial.javafxtutorial;
 
 
@@ -100,8 +107,8 @@ When we extend application we must provide an implementation of its start method
 
 5. Override the start method:
 
-```java title="MainMenu.java" linenums="1"
-    package com.javafxtutorial.javafxtutorial;
+```java title="MainMenu.java" linenums="1" hl_lines="6-7 12-19"
+package com.javafxtutorial.javafxtutorial;
 
 
 
@@ -132,7 +139,7 @@ public class MainMenu extends Application {
 ## Building Your First Scene
 <!-- building your first scene -->
 Scenes in JavaFX are like canvases where you'll draw your user interface. Creating a scene is as simple as this:
-```java title="MainMenu.java" linenums="1"
+```java title="MainMenu.java" linenums="1" hl_lines="6 14"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -155,11 +162,35 @@ Well... not quite. We need to pass a parent node as a parameter to our scene whe
 !!! note
     JavaFX has a certain structure that we need to make sure we follow:
     Stage -> Scene -> Parent
+To create a scene we need to pass it a `Parent` node, let's use a group.
+``` java title="MainMenu.java" linenums="1" hl_lines="5 14-17"
+    package com.javafxtutorial.javafxtutorial;
+
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+public class MainMenu extends Application {
+
+
+   @Override
+   public void start(Stage stage) throws Exception {
+        Group root = new Group();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+   }
+}
+```
+
 Now when you run the application you should get a window like this:
 ![Image Title](assets\SettingUpImages\newscene.png"ImageTitle"){: .center-image}
 
 The window is a bit too big and is lacking a name so let's change that:
-```java title="MainMenu.java" linenums="1"
+```java title="MainMenu.java" linenums="1" hl_lines="14-15 21 24"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -199,9 +230,11 @@ There's two ways we can add elements to our scene:
 To start we will add elements manually, then go over how we can translate the elements we added into a single FXML file.
 
 ### Manually Inserting Elements
+1. Make a helper method
+
 Adding elements manually takes a decent amount of space, so lets create a helper method called `makeSceneGroup` for this.
 Our helper method will return a group, which we will use for our scene's parent.
-```java title="MainMenu.java" linenums="1"
+```java title="MainMenu.java" linenums="1" hl_lines="27-30"
     package com.javafxtutorial.javafxtutorial;
 
 
@@ -235,6 +268,8 @@ public class MainMenu extends Application {
 }
 
 ```
+2. Adding elements
+
 Now that we have our scene set up, let's start by adding some basic shapes.
 We can create a rectangle by using this line of code:
 ```java
@@ -245,7 +280,7 @@ Rectangle rectangle = new Rectangle(80, 80);
 !!! note 
     We can also assign our rectangle a colour by passing `Color.RED`, where `RED` can be replaced with the colour we want.
 Let's add our rectangle to our group and return the group to finish our method.
-``` java title="makeSceneGroup method" linenums="27"
+``` java title="makeSceneGroup method" linenums="27" hl_lines="3-5"
 private Group makeSceneGroup() {
     Group sceneGroup  = new Group();
     Rectangle rectangle = new Rectangle(80, 80, Color.RED);
@@ -257,7 +292,7 @@ Now when you run our application you should see a red rectangle on screen.
 ![Image Title](assets\SettingUpImages\red.png"ImageTitle"){: .center-image}
 
 Let's remove the rectangle and add some other elements to make our menu.
-``` java title="MainMenu.java" linenums="1"
+``` java title="MainMenu.java" linenums="1" hl_lines="7-9 20 29-33"
 package com.javafxtutorial.javafxtutorial;
 
 
@@ -266,8 +301,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -311,7 +344,8 @@ Here we used a few simple elements of JavaFX. For a deeper look into the types o
 FXML allows you to design your user interface separately from your Java code. Let's take a look at how we can convert our menu into a FXML file.
 For a more detailed look into FXML check out the [Oracle Documentation](https://openjfx.io/javadoc/24/javafx.fxml/javafx/fxml/doc-files/introduction_to_fxml.html) on it.
 
-### Creating an FXML File
+1. Creating an FXML File
+
 Start by creating a new file called `MainMenu.fxml` in your resources folder:
 ![Image Title](assets\SettingUpImages\fxmlfilelocation.png"ImageTitle"){: .center-image}
 
@@ -319,8 +353,11 @@ Start by creating a new file called `MainMenu.fxml` in your resources folder:
 When you create your FXML file it will look like this:
 ![Image Title](assets\SettingUpImages\initialfxmlfile.png"ImageTitle"){: .center-image}
 From here, we can remove the `AnchorPane` tag and all the initial import statements as we won't be needing them.
+
+2. Recreating our scene
+
 To recreate our scene in our FXML file, insert this code:
-```xml title="MainMenu.xml" linenums="1"
+```xml title="MainMenu.xml" linenums="1" hl_lines="4-11"
 <?xml version="1.0" encoding="UTF-8"?>
 
 
@@ -336,11 +373,13 @@ To recreate our scene in our FXML file, insert this code:
 ```
 Let's walk through this step by step.
 First we create a VBox, using the VBox tag.
-Inside our VBoc we add our text element and our two buttons, putting what we want the text and buttons to display in between their opening and closing tags.
-### Loading FXML in Your Application
+Inside our VBox we add our text element and our two buttons, putting what we want the text and buttons to display in between their opening and closing tags.
+
+3. Loading FXML in Your Application
+
 Now to use our FXML file we need to load it in our start method.
 
-   ```java title="MainMenu.java" linenums="1"
+   ```java title="MainMenu.java" linenums="1" hl_lines="3-4"
     @Override
     public void start(final Stage stage) throws Exception {
         FXMLLoader menuFXML = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
@@ -354,7 +393,7 @@ Now to use our FXML file we need to load it in our start method.
     Make sure that in our scene constructor we call our FXML loader we created with .load() attached!! Or else it will not accept it and will fail to construct our scene.
 
 !!! success
-    The final result should look like this:
+    You've successfully created the base for a menu. The final result should look like the image below.
 ![Image Title](assets\SettingUpImages\setupFinal.png"ImageTitle"){: .center-image}
 ## Conclusion
 <!-- end product is a simple title screen with a start button, exit button and title. -->
