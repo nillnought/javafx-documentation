@@ -1,8 +1,8 @@
 # Handling Player Interactions
 <!-- overview -->
 ## Overview
-This section will focus on handling player interactions like inputs for movement and collisions between the player and another entity.
-## Player Movement
+This section will introduce handling player interactions like clicking a button, changing game scenes, player movement, and mouse interactions as we add functionality to our menu and game scene.
+## Button Interactions
 <!-- Handling key presses and clicks -->
 1. Create a new class in our `com.` folder called "MenuController"
 
@@ -83,7 +83,11 @@ Lastly, let's go back to our FXML file and tell our start button to use this met
 Now run the application and click the start button, you should end up seeing this:
 ![Image Title](assets\PlayerInteractionsImages\changedtext.png"ImageTitle"){: .center-image}
 
+## Loading A New Scene
 Just having our text change when we click start is a bit boring, so let's change our method to load a new scene.
+
+1. Use start button to load an empty scene
+
 First let's give our start button an ID:
 ```xml title="mainMenu.fxml" linenums="1" hl_lines="9"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -131,7 +135,10 @@ public class MenuController {
 
 Now when we start our application and click the start button we should get an empty scene.
 ![Image Title](assets\PlayerInteractionsImages\empty scene.png"ImageTitle"){: .center-image}
-Great! Now let's create a FXML file for our game scene:
+
+2. Replace empty scene with FXML scene
+
+Now let's create a FXML file for our game scene:
 ![Image Title](assets\PlayerInteractionsImages\creategamescene.png"ImageTitle"){: .center-image}
 And let's modify our method to load this scene instead:
 ```java title="MenuController.java" linenums="1" hl_lines="5-6 21 25-27"
@@ -166,6 +173,8 @@ public class MenuController {
 !!! warning
     Before running the application be sure to remove this line from game.fxml, or else the application will not run.
     `fx:controller="com.javafxtutorial.javafxtutorial.Game"`
+
+3. Add exit functionality to exit button
 
 Lastly, lets add a method for our exit button:
 ```java title="MenuController.java" linenums="1" hl_lines="29-32"
@@ -296,6 +305,7 @@ public class Game {
 }
 ```
 Our two methods `setVelX` and `setVelY` are where we set the player's X and Y velocity, while our `movementLoop` method handles translating the player using that velocity.
+
 3. Starting our movement loop
 
 Before we can handle any keyboard inputs we need to start our `movementLoop`. To do this let's make some changes to our `MenuController` class.
@@ -347,15 +357,17 @@ public class MenuController {
 
 ```
 To start, we've broken up our single line we used to change our Scene root into 4 lines.
+
 Doing this allows us to use our `game.fxml` file separately, which we can use to access our `Game` class using this line: `Game gameController = gameFXML.getController();`
 This allows us to start our `movementLoop` method we defined earlier.
+
 Lastly, we request focus for our game window so that any keyboard inputs will be correctly recieved by our game.
 
 4. Handling keyboard inputs
 
 Now that we've started our movement loop, we need to recieve keyboard input from the player so that we know when to change their position.
 To do this we will use `setOnKeyPressed` and `setOnKeyReleased` to ensure smooth movement.
-``` java title="mainController.java" linenums="1" hl_lines="9"
+``` java title="MenuController.java" linenums="1" hl_lines="9 43-70"
     package com.javafxtutorial.javafxtutorial;
 
 
@@ -443,8 +455,89 @@ public class MenuController {
    }
 }
 ```
+Now when you run the application and press start you will be able to use the WASD keys to move the blue square around.
+![Image Title](assets\PlayerInteractionsImages\movementfinal.gif"ImageTitle"){: .center-image}
+
 ## Mouse Interactions
 The last type of player interaction we will handle is mouse interactions. For this we will use the orange rectangle we added to our scene previously.
+
+1. Assign an ID to the orange rectangle in `Game.fxml`
+
+```xml title="Game.fxml" linenums="1" hl_lines="9"
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<Group xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.javafxtutorial.javafxtutorial.Game">
+   <Rectangle height="100" width="100" fill="orange" fx:id="orangeRectangle"/>
+   <Rectangle height="50" width="50" fill="blueviolet" fx:id="player"/>
+
+
+</Group>
+```
+2. Create methods for mouse interactions
+
+We will be handling 3 different interactions with our orange rectangle in `Game.java`. Create 3 methods for this: mouseEnter, mouseExit, and click.
+```java title="Game.java" linenums="1" hl_lines="15-33"
+package com.javafxtutorial.javafxtutorial;
+
+
+import javafx.animation.AnimationTimer;
+import javafx.fxml.FXML;
+import javafx.scene.shape.Rectangle;
+
+public class Game {
+
+
+private double velX;
+private double velY;
+
+
+ @FXML
+ private Rectangle orangeRectangle;
+
+@FXML
+public void mouseEnter() {
+   orangeRectangle.setOpacity(0.5);
+}
+
+
+@FXML
+public void mouseExit() {
+   orangeRectangle.setOpacity(1);
+}
+
+
+@FXML
+public void click() {
+   orangeRectangle.setFill(Color.RED);
+}
+```
+3. Assign methods to the orange rectangle
+Lastly, we need to tell our rectangle to use these methods when we want it to.
+```xml title="game.fxml" linenums="1" hl_lines="9-10"
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+<Group xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.javafxtutorial.javafxtutorial.Game">
+   <Rectangle height="100" width="100" fill="orange" fx:id="orangeRectangle"
+              onMouseClicked="#click" onMouseEntered="#mouseEnter" onMouseExited="#mouseExit"/>
+   <Rectangle height="50" width="50" fill="blueviolet" fx:id="player"/>
+
+
+</Group>
+```
+!!! success
+    Now when you run the application you should be able to hover over and click the orange rectangle to see the results.
+
+![Image Title](assets\PlayerInteractionsImages\finalinteractions.gif"ImageTitle"){: .center-image}
 
 ## Conclusion
 Well Done! You've learned how to handle different types of player interactions. We covered:
@@ -452,5 +545,6 @@ Well Done! You've learned how to handle different types of player interactions. 
 - Adding functionality to buttons
 - Changing scenes
 - Handling keyboard input
+- Simple mouse interactions
 
-Now it's time to move on to the last step, making this game your own!
+Now it's time to move on to the last step, making this game your own with some customization!
