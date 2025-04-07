@@ -21,19 +21,10 @@
 | Idle State             | A state where no actions or movement are happening. For example, when no movement keys are pressed, a character can display a still (idle) animation frame.                                    |
 | Mouse Interaction      | Capturing user actions like mouse clicks, hovering, or dragging to interact with the application.                                                                                             |
 | Group                  | A JavaFX node that acts as a container for other nodes (UI elements). It allows you to group multiple elements together for easier manipulation.                                               |
-| Rectangle              | A basic shape in JavaFX that can be added to a scene. It is often used for representing static or interactive elements, like a player character in a game.                                     |
-| Direction Enum         | A Java enum type used to represent different movement directions (e.g., UP, DOWN, LEFT, RIGHT).                                                                                               |
-| Background Scrolling   | A technique where the background moves in response to the character's movement, giving the illusion of the character navigating a larger world.                                                |
-| Frame Rate             | The speed at which animation frames are displayed, usually measured in frames per second (FPS).                                                                                               |
-| Asset Path             | The file path where resources like images or FXML files are stored in a JavaFX project.                                                                                                       |
+
 | Preloading             | A technique used to load resources (e.g., images) before the application starts to reduce lag and improve performance.                                                                         |
 | Button                 | A clickable UI element in JavaFX that triggers specific actions when clicked.                                                                                                                 |
-| Event Handling         | The process of detecting and responding to user interactions like clicks, key presses, or mouse movements.                                                                                    |
-| Exit Functionality     | A feature that allows the user to close the application, often triggered by clicking an "Exit" button.                                                                                        |
-| WASD Keys              | Common keyboard controls used for movement in games (W = up, A = left, S = down, D = right).                                                                                                  |
+
 | Smooth Movement        | Movement that updates the position of an object in small increments to create fluid motion, often achieved using velocity-based calculations.                                                  |
 | Opacity                | The transparency of a UI element in JavaFX. A value of 1 means fully visible, while 0 means completely invisible.                                                                             |
-| Layering               | The process of stacking visual elements on top of one another, such as placing a character sprite on a background.                                                                            |
-| JavaFX Application Structure | The hierarchy of elements in a JavaFX application: `Stage` -> `Scene` -> `Parent`.                                                                                                     |
-| Frame Animation        | A technique where a series of images (frames) are displayed in sequence to create the illusion of motion.                                                                                     |
 | Lazy Loading           | Loading resources like images only when they are needed to save memory and improve application performance.                                                                                   |
