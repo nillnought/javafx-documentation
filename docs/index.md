@@ -16,6 +16,7 @@ To follow this guide you should have:
 ## Software Requirements
 - Java 11 or later
 - IntelliJ IDEA
+- A Windows device of Windows 10 or 11
 
 ## Overview
 The main topics of this documentation is as listed below:
