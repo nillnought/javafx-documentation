@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -150,13 +150,11 @@
     
     
     
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -188,7 +186,6 @@
     </div>
   </div>
 </div>
-      
     
     
   </nav>
@@ -237,7 +234,6 @@
       <a href=".." class="md-nav__link">
         
   
-  
   <span class="md-ellipsis">
     Introduction
     
@@ -259,7 +255,6 @@
       <a href="../Setting_Up/" class="md-nav__link">
         
   
-  
   <span class="md-ellipsis">
     Setting Up
     
@@ -280,7 +275,6 @@
     <li class="md-nav__item">
       <a href="../Player_Interactions/" class="md-nav__link">
         
-  
   
   <span class="md-ellipsis">
     Player Interactions
@@ -312,7 +306,6 @@
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
-  
   <span class="md-ellipsis">
     Pizzazz
     
@@ -324,7 +317,6 @@
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
-  
   
   <span class="md-ellipsis">
     Pizzazz
@@ -481,7 +473,6 @@
       <a href="../Troubleshooting/" class="md-nav__link">
         
   
-  
   <span class="md-ellipsis">
     Troubleshooting Guide
     
@@ -502,7 +493,6 @@
     <li class="md-nav__item">
       <a href="../Glossary/" class="md-nav__link">
         
-  
   
   <span class="md-ellipsis">
     Glossary
@@ -675,7 +665,7 @@
 <!-- overview -->
 <h2 id="overview">Overview</h2>
 <p>Welcome to the world of sprite animation in JavaFX! In this guide, we'll show you how to breathe life into your application by animating a character sprite with smooth movement and directional animations. By the end, you'll have a simple yet dynamic program to kickstart your JavaFX gaming projects.</p>
-<p><img alt="Image Title" class="center-image" src="assets\animation\final_animation.gif" title="JavaFX Frame Animation" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/final_animation.gif" title="JavaFX Frame Animation" /></p>
 <h2 id="understanding-sprite-animations">Understanding Sprite Animations</h2>
 <p>Sprite animations are the heart of character movement in 2D games. In our approach, we'll use individual image frames to create fluid, lifelike character movements.</p>
 <h3 id="sprite-sheet-organization">Sprite Sheet Organization</h3>
@@ -687,7 +677,7 @@
 <li><code>walk_up/</code>: Frames for upward movement</li>
 </ul>
 <p>Each direction contains <strong>8 sequential PNG files</strong> (1.png through 8.png) representing the animation frames.</p>
-<p><img alt="Image Title" class="center-image" src="assets\animation\spritesheet.png" title="Animated Spritesheet Frames" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/spritesheet.png" title="Animated Spritesheet Frames" /></p>
 <h2 id="creating-animated-sprites">Creating Animated Sprites</h2>
 <p>In the <code>CharacterSprite</code> class, animated sprites are created by cycling through the frames using a <code>Timeline</code>. Here's how the program handles sprite animations:</p>
 <div class="language-java highlight"><span class="filename">CharacterSprite.java</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">startAnimation</span><span class="p">(</span><span class="n">Direction</span><span class="w"> </span><span class="n">direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -714,7 +704,7 @@
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">animationTimeline</span><span class="p">.</span><span class="na">play</span><span class="p">();</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
 </span></code></pre></div>
-<p><img alt="Image Title" class="center-image" src="assets\animation\timeline.png" title="Frame Animation Timeline" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/timeline.png" title="Frame Animation Timeline" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Frames are loaded dynamically based on the direction. The Timeline cycles through the frames, creating a smooth animation.</p>
@@ -730,7 +720,7 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}.</span><span class="na">start</span><span class="p">();</span>
 </span></code></pre></div>
-<p><img alt="Image Title" class="center-image" src="assets\animation\sprite_animation.gif" title="Sprite Animation Movement" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/sprite_animation.gif" title="Sprite Animation Movement" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>velX and velY determine the character's velocity (speed and direction).
@@ -790,7 +780,7 @@ The AnimationTimer continuously updates the sprite's position, ensuring smooth m
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">});</span>
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
 </span></code></pre></div>
-<p><img alt="Image Title" class="center-image" src="assets\animation\keyboard_input.gif" title="JavaFX Keyboard Input moveing Pixel Sprite" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/keyboard_input.gif" title="JavaFX Keyboard Input moveing Pixel Sprite" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Directional Movement: W, A, S, D or arrow keys (UP, DOWN, LEFT, RIGHT) control the sprite's movement.
@@ -818,7 +808,7 @@ Idle State: When no movement keys are pressed, the animation stops, and the spri
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">frames</span><span class="p">;</span>
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
 </span></code></pre></div>
-<p><img alt="Image Title" class="center-image" src="assets\animation\framelayers.png" title="Frame Animation Organization" /></p>
+<p><img alt="Image Title" class="center-image" src="../assets/animation/framelayers.png" title="Frame Animation Organization" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Each frame is loaded using the Direction enum, which maps to the correct folder path.
@@ -942,9 +932,7 @@ Frames should be consistent in size to ensure smooth animation.</p>
     </div>
     
     
-    
-      
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
