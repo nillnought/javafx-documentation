@@ -3,6 +3,8 @@
 ## Overview
 Welcome to the world of sprite animation in JavaFX! In this guide, we'll show you how to breathe life into your application by animating a character sprite with smooth movement and directional animations. By the end, you'll have a simple yet dynamic program to kickstart your JavaFX gaming projects.
 
+![Image Title](assets\animation\final_animation.gif"JavaFX Frame Animation"){: .center-image}
+
 ## Understanding Sprite Animations
 Sprite animations are the heart of character movement in 2D games. In our approach, we'll use individual image frames to create fluid, lifelike character movements.
 
@@ -15,6 +17,8 @@ Your sprite sheet is carefully organized into four directional folders:
 - `walk_up/`: Frames for upward movement
 
 Each direction contains **8 sequential PNG files** (1.png through 8.png) representing the animation frames.
+
+![Image Title](assets\animation\spritesheet.png"Animated Spritesheet Frames"){: .center-image}
 
 ## Creating Animated Sprites
 In the `CharacterSprite` class, animated sprites are created by cycling through the frames using a `Timeline`. Here's how the program handles sprite animations:
@@ -43,7 +47,12 @@ private void startAnimation(Direction direction) {
     animationTimeline.setCycleCount(Animation.INDEFINITE); // Loop the animation
     animationTimeline.play();
 }
+
 ```
+
+![Image Title](assets\animation\timeline.png"Frame Animation Timeline"){: .center-image}
+
+
 !!! tip
     Frames are loaded dynamically based on the direction. The Timeline cycles through the frames, creating a smooth animation.
 
@@ -60,6 +69,10 @@ new javafx.animation.AnimationTimer() {
     }
 }.start();
 ```
+
+![Image Title](assets\animation\sprite_animation.gif"Sprite Animation Movement"){: .center-image}
+
+
 !!! tip
     velX and velY determine the character's velocity (speed and direction).
     When movement keys are pressed, the velocity is updated.
@@ -124,6 +137,8 @@ private void addKeyboardMovement(Scene scene, ImageView characterSprite, ImageVi
 }
 ```
 
+![Image Title](assets\animation\keyboard_input.gif"JavaFX Keyboard Input moveing Pixel Sprite"){: .center-image}
+
 !!! tip
     Directional Movement: W, A, S, D or arrow keys (UP, DOWN, LEFT, RIGHT) control the sprite's movement.
     The direction determines which animation plays.
@@ -155,6 +170,8 @@ private Image[] loadFrames(Direction direction) {
     return frames;
 }
 ```
+
+![Image Title](assets\animation\framelayers.png"Frame Animation Organization"){: .center-image}
 
 !!! tip
     Each frame is loaded using the Direction enum, which maps to the correct folder path.
