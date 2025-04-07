@@ -11,10 +11,12 @@ This documentation will cover these topics:
 - Handling player interactions
     - Assigning methods to buttons
     - Changing scenes
+    - Smooth player movement
     - Mouse interactions
 - Styling and adding Pizzazz
     - Using and animating sprites
     - Animating sprites on player movement
+    - Using several inputs for movement
 
 ## Communication and Tools Used
 We used Discord to communicate as well as some in-person conversations.
